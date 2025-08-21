@@ -4,6 +4,6 @@
 /**
  * 
  */
-module Mini_zelda {
+module Pong {
 	requires java.desktop;
 }
