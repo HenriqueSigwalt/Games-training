@@ -12,6 +12,7 @@ public class Spritesheet {
 	public static BufferedImage[] player_back;
 	public static BufferedImage[] player_left;
 	public static BufferedImage[] player_right;
+	public static BufferedImage enemy_front;
 	
 	public Spritesheet() {
 		try {
@@ -32,6 +33,7 @@ public class Spritesheet {
 		player_back[1] = Spritesheet.getSprite(86, 11, 16, 16);
 		player_left[1] = Spritesheet.getSprite(52, 27, 16, 16);
 		player_right[1] = Spritesheet.getSprite(52, 11, 16, 16);
+		enemy_front = Spritesheet.getSprite(92, 224, 16, 16);
 	}
 	
 	public static BufferedImage getSprite(int x, int y, int width, int height) {

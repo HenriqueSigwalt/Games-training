@@ -6,14 +6,17 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable, KeyListener{
 	
 	public static int WIDTH=480, HEIGTH=480;
-	public Player player;
+	public static Player player;
 	public World world;
+	public List<Enemy> enemies= new ArrayList<Enemy>();
 	
 	public Game() {
 		this.addKeyListener(this);
@@ -21,11 +24,15 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		new Spritesheet();
 		world = new World();
 		player = new Player(32,32,32,32);
+		enemies.add(new Enemy(300,250,32,32));
 	}
 	
 	public void tick() {
 		world.tick();
 		player.ticK();
+		for(int i=0;i<enemies.size();i++) {
+			enemies.get(i).ticK();
+		}
 	}
 	
 	public void render() {
@@ -38,6 +45,9 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		g.fillRect(0, 0, WIDTH, HEIGTH);
 		world.render(g);
 		player.render(g);
+		for(int i=0;i<enemies.size();i++) {
+			enemies.get(i).render(g);
+		}
 		bs.show();
 	}
 	
@@ -84,6 +94,9 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		}
 		if(e.getKeyCode()==KeyEvent.VK_DOWN) {
 			player.down=true;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_SPACE) {
+			player.shoot=true;
 		}
 	}
 
